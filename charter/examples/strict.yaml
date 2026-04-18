@@ -1,0 +1,38 @@
+# Strict charter: no self-modification permitted.
+# Hermes runs only with the skills it was deployed with.
+
+schema_version: "aps.charter/v1"
+charter_id: "urn:hermes-charter:strict-001"
+issuer:
+  id: "did:key:z6MkOperatorStrict0000000000000000000000000000"
+  display: "Compliance Office"
+subject_agent:
+  id: "did:key:z6MkHermesStrict0000000000000000000000000000000"
+  display: "Hermes-prod-strict"
+issued_at: "2026-04-29T00:00:00Z"
+not_before: "2026-04-29T00:00:00Z"
+not_after: "2026-10-29T00:00:00Z"
+
+scopes:
+  skill_creation:
+    allowed: false
+    domains: []
+    persistent: false
+    max_modifications_per_window: 0
+    modification_window_seconds: 0
+  tool_call:
+    allowed_tools:
+      - "read_file"
+    denied_tools: []
+  data_read:
+    allowed_paths:
+      - "/workspace/repo/**"
+    denied_paths:
+      - "/workspace/repo/.env*"
+  data_write:
+    allowed: false
+
+signature:
+  algorithm: "Ed25519"
+  signer_key_id: "did:key:z6MkOperatorStrict0000000000000000000000000000"
+  value: "EXAMPLE-UNVERIFIED-SIGNATURE"

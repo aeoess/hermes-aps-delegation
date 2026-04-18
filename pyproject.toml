@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hermes-aps-delegation"
+version = "0.1.0-dev"
+description = "APS delegation and attestation wiring for Nous Hermes self-modifying agents (reference integration)"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Tymofii Pidlisnyi", email = "tima@aeoess.com" }]
+requires-python = ">=3.10"
+dependencies = [
+    "PyNaCl>=1.5.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/aeoess/hermes-aps-delegation"
+Issues = "https://github.com/aeoess/hermes-aps-delegation/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

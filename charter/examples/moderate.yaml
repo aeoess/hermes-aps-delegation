@@ -1,0 +1,47 @@
+# Moderate charter: skill creation permitted within a narrow domain
+# allowlist. Persistent skills allowed. Modest rate limit.
+
+schema_version: "aps.charter/v1"
+charter_id: "urn:hermes-charter:moderate-001"
+issuer:
+  id: "did:key:z6MkOperatorModerate00000000000000000000000000"
+  display: "Engineering Lead"
+subject_agent:
+  id: "did:key:z6MkHermesModerate0000000000000000000000000000"
+  display: "Hermes-staging"
+issued_at: "2026-04-29T00:00:00Z"
+not_before: "2026-04-29T00:00:00Z"
+not_after: "2026-07-29T00:00:00Z"
+
+scopes:
+  skill_creation:
+    allowed: true
+    domains:
+      - "code-review"
+      - "documentation"
+      - "test-generation"
+    persistent: true
+    max_modifications_per_window: 20
+    modification_window_seconds: 3600
+  tool_call:
+    allowed_tools:
+      - "read_file"
+      - "search_code"
+      - "run_tests"
+    denied_tools:
+      - "execute_shell"
+      - "send_email"
+      - "deploy"
+  data_read:
+    allowed_paths:
+      - "/workspace/repo/**"
+    denied_paths:
+      - "/workspace/repo/.env*"
+      - "/workspace/repo/secrets/**"
+  data_write:
+    allowed: false
+
+signature:
+  algorithm: "Ed25519"
+  signer_key_id: "did:key:z6MkOperatorModerate00000000000000000000000000"
+  value: "EXAMPLE-UNVERIFIED-SIGNATURE"

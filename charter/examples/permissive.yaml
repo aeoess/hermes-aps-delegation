@@ -1,0 +1,53 @@
+# Permissive charter: broad domain allowlist, ephemeral skills only,
+# short rate-limit window. Suitable for sandboxed exploration.
+
+schema_version: "aps.charter/v1"
+charter_id: "urn:hermes-charter:permissive-001"
+issuer:
+  id: "did:key:z6MkOperatorPermissive000000000000000000000000"
+  display: "Research Team"
+subject_agent:
+  id: "did:key:z6MkHermesPermissive00000000000000000000000000"
+  display: "Hermes-sandbox"
+issued_at: "2026-04-29T00:00:00Z"
+not_before: "2026-04-29T00:00:00Z"
+not_after: "2026-05-29T00:00:00Z"
+
+scopes:
+  skill_creation:
+    allowed: true
+    domains:
+      - "code-review"
+      - "documentation"
+      - "test-generation"
+      - "data-analysis"
+      - "research"
+      - "summarization"
+    persistent: false
+    max_modifications_per_window: 100
+    modification_window_seconds: 600
+  tool_call:
+    allowed_tools:
+      - "read_file"
+      - "search_code"
+      - "run_tests"
+      - "fetch_url"
+    denied_tools:
+      - "execute_shell"
+      - "send_email"
+      - "deploy"
+      - "modify_charter"
+  data_read:
+    allowed_paths:
+      - "/workspace/sandbox/**"
+    denied_paths:
+      - "/workspace/sandbox/.env*"
+  data_write:
+    allowed: true
+    allowed_paths:
+      - "/workspace/sandbox/scratch/**"
+
+signature:
+  algorithm: "Ed25519"
+  signer_key_id: "did:key:z6MkOperatorPermissive000000000000000000000000"
+  value: "EXAMPLE-UNVERIFIED-SIGNATURE"

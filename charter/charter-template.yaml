@@ -1,0 +1,55 @@
+# Hermes operator charter — root delegation template.
+#
+# Operator signs this with their Ed25519 key. Hermes loads the signed
+# charter at startup and refuses to act outside the declared envelope.
+#
+# Required top-level fields: schema_version, charter_id, issuer,
+# subject_agent, issued_at, scopes.
+
+schema_version: "aps.charter/v1"
+charter_id: "urn:hermes-charter:REPLACE-WITH-UUID"
+issuer:
+  id: "did:key:REPLACE-WITH-OPERATOR-PUBKEY"
+  display: "Operator Name"
+subject_agent:
+  id: "did:key:REPLACE-WITH-HERMES-PUBKEY"
+  display: "Hermes deployment id"
+issued_at: "2026-04-29T00:00:00Z"
+not_before: "2026-04-29T00:00:00Z"
+not_after: "2026-07-29T00:00:00Z"
+
+scopes:
+  # Self-modification axes — the five governance dimensions.
+  skill_creation:
+    allowed: true
+    domains:
+      - "code-review"
+      - "documentation"
+    persistent: false
+    max_modifications_per_window: 10
+    modification_window_seconds: 3600
+
+  # Standard APS scopes. Hermes may sub-delegate within these but
+  # never widen them (monotonic narrowing).
+  tool_call:
+    allowed_tools:
+      - "read_file"
+      - "search_code"
+    denied_tools:
+      - "execute_shell"
+      - "send_email"
+  data_read:
+    allowed_paths:
+      - "/workspace/repo/**"
+    denied_paths:
+      - "/workspace/repo/.env*"
+      - "/workspace/repo/secrets/**"
+  data_write:
+    allowed: false
+
+# Operator signature over the canonicalized JSON of every field above.
+# See `charter/validate.py` for the canonicalization rules.
+signature:
+  algorithm: "Ed25519"
+  signer_key_id: "did:key:REPLACE-WITH-OPERATOR-PUBKEY"
+  value: "REPLACE-WITH-BASE64-SIGNATURE"
