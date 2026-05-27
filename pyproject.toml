@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hermes-aps-delegation"
-version = "0.1.0-dev"
+version = "0.1.0"
 description = "APS delegation and attestation wiring for Nous Hermes self-modifying agents (reference integration)"
 readme = "README.md"
 license = { text = "Apache-2.0" }
