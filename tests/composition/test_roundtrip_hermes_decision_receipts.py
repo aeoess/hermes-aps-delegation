@@ -23,7 +23,7 @@ import hashlib
 import json
 import os
 import sys
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -37,7 +37,7 @@ REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "src"))
 
 from hermes_aps import PREDICATE_TYPE_DECISION_RECEIPT  # noqa: E402
-from hermes_aps.canonical import canonical_json, digest_of  # noqa: E402
+from hermes_aps.canonical import canonical_json  # noqa: E402
 from hermes_aps.delegation_wrapper import (  # noqa: E402
     GovernanceSession,
     wrap_skill_creation,
