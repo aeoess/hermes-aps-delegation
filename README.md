@@ -1,3 +1,5 @@
+> Archived 2026-09-02. Exploratory wiring against stubbed Hermes interfaces; never completed. Kept as a record.
+
 # hermes-aps-delegation
 
 Reference integration showing how a self-modifying agent (Nous Hermes) emits APS governance attestations around its skill-creation and tool-call events, conformant with the in-toto Decision Receipt predicate.
